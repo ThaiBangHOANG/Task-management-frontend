@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TaskService } from '../../../core/services/task.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-task-create',
@@ -15,29 +16,27 @@ export class TaskCreateComponent {
   task = {
     title: '',
     description: '',
-    status: 'Pending'
+    status: 'Pending',
   };
 
   constructor(
     private taskService: TaskService,
-    private router: Router
+    private router: Router,
+    private toast: ToastrService,
   ) {}
 
   createTask() {
-
     console.log('Creating task:', this.task);
 
-    this.taskService.createTask(this.task)
-      .subscribe({
-        next: () => {
-          alert('Task created successfully');
-          this.router.navigate(['/tasks']);
-        },
-        error: (err) => {
-          console.error(err);
-          alert('Create task failed');
-        }
-      });
-
+    this.taskService.createTask(this.task).subscribe({
+      next: () => {
+        this.toast.success('Task created successfully');
+        this.router.navigate(['/tasks']);
+      },
+      error: (err) => {
+        console.error(err);
+        this.toast.error('Create task failed');
+      },
+    });
   }
 }

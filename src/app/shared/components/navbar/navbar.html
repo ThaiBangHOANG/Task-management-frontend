@@ -1,0 +1,11 @@
+<header class="navbar">
+  <div class="nav-title">Task Management</div>
+
+  @if (isLoggedIn) {
+    <span>
+      {{ username }}
+    </span>
+
+    <button (click)="logout()">Logout</button>
+  }
+</header>

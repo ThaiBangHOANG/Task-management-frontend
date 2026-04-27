@@ -2,10 +2,6 @@
 
 <h2>Task List</h2>
 
-<button (click)="logout()">
-  Logout
-</button>
-
 <button routerLink="/tasks/create">Create Task</button>
 
 <br /><br />
@@ -68,11 +64,11 @@
   </tr>
 </table>
 
-<div *ngIf="!isLoading && tasks?.length === 0">
-
-  No tasks found.
-
-</div>
+@if (!isLoading && tasks.length === 0) {
+  <div>
+    No tasks found.
+  </div>
+}
 
 <br />
 

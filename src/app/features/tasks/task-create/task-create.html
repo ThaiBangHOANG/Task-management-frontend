@@ -7,9 +7,26 @@
     <input
       type="text"
       [(ngModel)]="task.title"
-      name="title"
       required
+      minlength="3"
+      maxlength="100"
+      #titleInput="ngModel"
+      placeholder="Enter task title"
     />
+
+    @if (titleInput.invalid && titleInput.touched) {
+      <div>
+        Title is required.
+      </div>
+    }
+
+     @if (titleInput.errors?.['minlength']) {
+      Minimum 3 characters
+    }
+
+     @if (titleInput.errors?.['maxlength']) {
+      Maximum 100 characters
+    }
   </div>
 
   <br>

@@ -83,3 +83,11 @@ button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.error {
+
+  color: red;
+  font-size: 13px;
+  margin-top: 4px;
+
+}

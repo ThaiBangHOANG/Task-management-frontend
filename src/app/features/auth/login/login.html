@@ -9,6 +9,8 @@
   [(ngModel)]="username"
   name="username"
   required
+  minlength="3"
+  maxlength="50"
   #usernameInput="ngModel"
   placeholder="Enter username"
   (keyup.enter)="login()"
@@ -21,6 +23,10 @@
 </div>
 }
 
+@if (usernameInput.errors?.['minlength']) {
+      Minimum 3 characters
+    }
+
 <br><br>
 
 <label for="password">Password:</label>
@@ -28,6 +34,7 @@
   type="password"
   [(ngModel)]="password"
   required
+  minlength="6"
   #passwordInput="ngModel"
   placeholder="Enter password"
   (keyup.enter)="login()"
@@ -39,6 +46,9 @@
   Password is required.
 </div>
 }
+ @if (passwordInput.errors?.['minlength']) {
+      Minimum 6 characters
+    }
 
 <br><br>
 

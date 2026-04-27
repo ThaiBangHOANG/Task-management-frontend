@@ -24,10 +24,15 @@ export class LoginComponent {
   ) {}
 
   login() {
-    if (!this.username || !this.password) {
-      alert('Please enter username and password');
+    if (!this.username?.trim() || !this.password) {
+      this.toast.warning('Username required');
       return;
     }
+    if (!this.password?.trim()) {
+      this.toast.warning('Password required');
+      return;
+    }
+
     this.loading = true;
 
     const data = {
@@ -37,15 +42,14 @@ export class LoginComponent {
 
     this.authService.login(data).subscribe({
       next: (res: any) => {
-        localStorage.setItem('token', res.token);
+        this.authService.saveToken(res.token);
         this.toast.success('Login successful');
         this.router.navigate(['/tasks']);
       },
 
       error: (err) => {
         this.loading = false;
-        console.error(err);
-        alert('Login failed');
+        this.toast.error('Login failed');
       },
     });
   }
