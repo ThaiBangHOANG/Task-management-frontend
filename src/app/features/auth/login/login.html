@@ -4,7 +4,16 @@
   type="text"
   [(ngModel)]="username"
   placeholder="Username"
+  required
+  #usernameInput="ngModel"
 />
+
+@if (usernameInput.invalid && usernameInput.touched)
+{
+  <div>
+  Username is required.
+</div>
+}
 
 <br><br>
 
@@ -12,7 +21,16 @@
   type="password"
   [(ngModel)]="password"
   placeholder="Password"
+  required
+  #passwordInput="ngModel"
 />
+
+@if (passwordInput.invalid && passwordInput.touched)
+{
+  <div>
+  Password is required.
+</div>
+}
 
 <br><br>
 

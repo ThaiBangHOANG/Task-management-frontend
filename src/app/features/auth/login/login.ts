@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
@@ -21,6 +22,11 @@ export class LoginComponent {
   ) {}
 
   login() {
+
+    if (!this.username || !this.password) {
+    alert('Please enter username and password');
+    return;
+  }
 
     const data = {
       username: this.username,
