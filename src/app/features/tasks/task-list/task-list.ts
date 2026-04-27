@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-task-list',
@@ -29,6 +30,7 @@ export class TaskListComponent {
     private taskService: TaskService,
     private authService: AuthService,
     private router: Router,
+    private toastr: ToastrService,
   ) {}
 
   ngOnInit(): void {
@@ -49,13 +51,12 @@ export class TaskListComponent {
       )
       .subscribe({
         next: (data: any) => {
-          console.log('Tasks:', data);
           this.tasks = data;
           this.totalCount = data.totalCount;
           this.isLoading = false;
         },
         error: (err) => {
-          console.error('Error loading tasks:', err);
+         this.toastr.error('Failed to load tasks' + err.message);
           this.isLoading = false;
         },
       });
@@ -96,7 +97,6 @@ export class TaskListComponent {
       return;
     }
     this.authService.logout();
-
     this.router.navigate(['/login']);
   }
 
@@ -108,9 +108,10 @@ export class TaskListComponent {
     this.taskService.deleteTask(id).subscribe({
       next: () => {
         this.loadTasks();
+        this.toastr.success('Task deleted successfully');
       },
       error: (err) => {
-        console.error(err);
+        this.toastr.error('Failed to delete task');
       },
     });
   }

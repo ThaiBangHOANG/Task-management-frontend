@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
+import { ToastrService } from 'ngx-toastr'; 
 
 @Component({
   selector: 'app-register',
@@ -14,15 +15,18 @@ export class RegisterComponent {
   username = '';
   password = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private toastr: ToastrService) {}
 
   register() {
     this.authService.register({
       username: this.username,
       password: this.password
     }).subscribe({
-      next: () => alert('Register success'),
-      error: err => console.error(err)
+      next: () => this.toastr.success('Register success'),
+      error: err => {
+        this.toastr.error('Failed to register');
+        console.error(err);
+      } 
     });
   }
 }

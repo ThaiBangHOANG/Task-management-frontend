@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../../../core/services/task.service';
-import { Task } from '../../../core/models/task.model';
+import { ToastrService } from 'ngx-toastr';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-task-edit',
@@ -25,7 +26,8 @@ export class TaskEditComponent implements OnInit {
   constructor(
     private taskService: TaskService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -46,8 +48,9 @@ export class TaskEditComponent implements OnInit {
           this.task = data;
         },
         error: (err) => {
-          console.error(err);
-        }
+          this.toastr.error('Failed to load task');
+          return throwError(() => err);  
+                }
       });
 
   }
@@ -57,12 +60,13 @@ export class TaskEditComponent implements OnInit {
     this.taskService.updateTask(this.taskId, this.task)
       .subscribe({
         next: () => {
-          alert('Task updated');
+          this.toastr.success('Task updated successfully');
           this.router.navigate(['/tasks']);
         },
         error: (err) => {
-          console.error(err);
-          alert('Update failed');
+          this.toastr.error('Failed to update task');
+
+          return throwError(() => err);
         }
       });
 

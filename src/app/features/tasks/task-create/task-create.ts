@@ -26,7 +26,7 @@ export class TaskCreateComponent {
   ) {}
 
   createTask() {
-    console.log('Creating task:', this.task);
+    this.toast.info ('Creating task:', this.task.title);
 
     this.taskService.createTask(this.task).subscribe({
       next: () => {

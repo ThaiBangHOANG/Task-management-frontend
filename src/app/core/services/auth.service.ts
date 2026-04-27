@@ -10,16 +10,33 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
   private apiUrl = `${environment.apiUrl}/auth`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    if (this.isTokenExpired()) {
+      this.logout();
+    }
+  }
 
-  private loggedIn =
-    new BehaviorSubject<boolean>(
-      !!this.getToken()
-    );
+  private loggedIn = new BehaviorSubject<boolean>(!!this.getToken());
 
-  isLoggedIn$ =
-    this.loggedIn.asObservable();
-  
+  isLoggedIn$ = this.loggedIn.asObservable();
+
+  isTokenExpired(): boolean {
+    const token = this.getToken();
+
+    if (!token) {
+      return true;
+    }
+
+    try {
+      const decoded: any = jwtDecode(token);
+      const now = Date.now() / 1000;
+
+      return decoded.exp < now;
+    } catch {
+      return true;
+    }
+  }
+
   register(data: any) {
     return this.http.post(`${this.apiUrl}/register`, data);
   }
