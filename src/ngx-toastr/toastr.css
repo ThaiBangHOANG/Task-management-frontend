@@ -1,0 +1,9 @@
+.toast-container {
+  position: fixed;
+  z-index: 999999;
+}
+
+.toast {
+  background-color: #030303;
+  color: #fff;
+}

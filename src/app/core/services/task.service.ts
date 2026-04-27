@@ -11,9 +11,41 @@ export class TaskService {
 
   constructor(private http: HttpClient) {}
 
-  getTasks(): Observable<any> {
-    return this.http.get(this.apiUrl);
-  }
+getTasks(
+  page: number,
+  pageSize: number,
+  search?: string,
+  status?: number,
+  isCompleted?: boolean,
+  sortBy?: string,
+  sortDescending?: boolean
+) {
+
+  let params: any = {
+    page,
+    pageSize
+  };
+
+  if (search)
+    params.search = search;
+
+  if (status !== undefined)
+    params.status = status;
+
+  if (isCompleted !== undefined)
+    params.isCompleted = isCompleted;
+
+  if (sortBy)
+    params.sortBy = sortBy;
+
+  if (sortDescending !== undefined)
+    params.sortDescending = sortDescending;
+
+  return this.http.get(this.apiUrl, {
+    params
+  });
+
+}
 
   createTask(task: any): Observable<any> {
     return this.http.post(this.apiUrl, task);

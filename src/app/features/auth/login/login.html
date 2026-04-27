@@ -1,11 +1,17 @@
+<div class="login-container">
+  <div class="login-card">
+
 <h2>Login</h2>
 
+<label for="username">Username:</label>
 <input
   type="text"
   [(ngModel)]="username"
-  placeholder="Username"
+  name="username"
   required
   #usernameInput="ngModel"
+  placeholder="Enter username"
+  (keyup.enter)="login()"
 />
 
 @if (usernameInput.invalid && usernameInput.touched)
@@ -17,12 +23,14 @@
 
 <br><br>
 
+<label for="password">Password:</label>
 <input
   type="password"
   [(ngModel)]="password"
-  placeholder="Password"
   required
   #passwordInput="ngModel"
+  placeholder="Enter password"
+  (keyup.enter)="login()"
 />
 
 @if (passwordInput.invalid && passwordInput.touched)
@@ -34,6 +42,17 @@
 
 <br><br>
 
-<button (click)="login()">
-  Login
-</button>
+<button
+      (click)="login()"
+      [disabled]="
+        usernameInput.invalid ||
+        passwordInput.invalid ||
+        loading
+      "
+    >
+      {{ loading ? 'Logging in...' : 'Login' }}
+    </button>
+
+  </div>
+
+</div>

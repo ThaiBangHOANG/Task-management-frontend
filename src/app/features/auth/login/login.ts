@@ -3,54 +3,50 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './login.html',
-  styleUrl: './login.css'
+  styleUrl: './login.css',
 })
 export class LoginComponent {
-
   username = '';
   password = '';
+  loading = false;
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toast: ToastrService,
   ) {}
 
   login() {
-
     if (!this.username || !this.password) {
-    alert('Please enter username and password');
-    return;
-  }
+      alert('Please enter username and password');
+      return;
+    }
+    this.loading = true;
 
     const data = {
       username: this.username,
-      password: this.password
+      password: this.password,
     };
 
     this.authService.login(data).subscribe({
       next: (res: any) => {
-
-        // save token
         localStorage.setItem('token', res.token);
-
-        alert('Login success');
-
-        // redirect
+        this.toast.success('Login successful');
         this.router.navigate(['/tasks']);
       },
 
       error: (err) => {
+        this.loading = false;
         console.error(err);
         alert('Login failed');
-      }
+      },
     });
-
   }
-
 }
