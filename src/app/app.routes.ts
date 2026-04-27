@@ -23,6 +23,20 @@ export const routes: Routes = [
         .then(m => m.TaskListComponent)
   },
 
+{
+  path: 'tasks/create',
+  loadComponent: () =>
+    import('./features/tasks/task-create/task-create')
+      .then(m => m.TaskCreateComponent)
+},
+
+{
+  path: 'tasks/edit/:id',
+  loadComponent: () =>
+    import('./features/tasks/task-edit/task-edit')
+      .then(m => m.TaskEditComponent)
+},
+
   {
     path: '',
     redirectTo: 'login',

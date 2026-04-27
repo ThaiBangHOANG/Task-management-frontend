@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TaskService } from '../../../core/services/task.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './task-list.html',
   styleUrl: './task-list.css',
 })
@@ -30,4 +31,22 @@ export class TaskListComponent {
       }
     });
   }
+
+  deleteTask(id: number) {
+
+  if (!confirm('Delete this task?')) {
+    return;
+  }
+
+  this.taskService.deleteTask(id)
+    .subscribe({
+      next: () => {
+        this.loadTasks();
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
+
+}
 }

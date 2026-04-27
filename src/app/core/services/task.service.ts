@@ -17,4 +17,23 @@ export class TaskService {
   createTask(task: any): Observable<any> {
     return this.http.post(this.apiUrl, task);
   }
+
+  deleteTask(id: number) {
+  return this.http.delete(
+    `http://localhost:5150/api/tasks/${id}`
+  );
+  }
+
+  getTaskById(id: number) {
+  return this.http.get(
+    `http://localhost:5150/api/tasks/${id}`
+  );
+}
+
+updateTask(id: number, task: any) {
+  return this.http.put(
+    `http://localhost:5150/api/tasks/${id}`,
+    task
+  );
+}
 }
