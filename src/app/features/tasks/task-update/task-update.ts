@@ -1,0 +1,52 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { TaskService } from '../../../core/services/task.service';
+
+@Component({
+  selector: 'app-task-update',
+  standalone: true,
+  imports: [FormsModule],
+  templateUrl: './task-update.html'
+})
+export class TaskUpdateComponent implements OnInit {
+
+  task: any = {
+    title: '',
+    description: '',
+    status: 'Pending'
+  };
+
+  id!: number;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private taskService: TaskService
+  ) {}
+
+  ngOnInit() {
+
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+
+    this.taskService.getTaskById(this.id)
+      .subscribe({
+        next: (data) => {
+          this.task = data;
+        }
+      });
+
+  }
+
+  updateTask() {
+
+    this.taskService.updateTask(this.id, this.task)
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/tasks']);
+        }
+      });
+
+  }
+
+}

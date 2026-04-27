@@ -1,0 +1,42 @@
+<h2>Update Task</h2>
+
+<form (ngSubmit)="updateTask()">
+
+  <div>
+    <label>Title</label>
+    <input
+      type="text"
+      [(ngModel)]="task.title"
+      name="title"
+      required
+    >
+  </div>
+
+  <div>
+    <label>Description</label>
+    <input
+      type="text"
+      [(ngModel)]="task.description"
+      name="description"
+    >
+  </div>
+
+  <div>
+    <label>Status</label>
+
+    <select
+      [(ngModel)]="task.status"
+      name="status"
+    >
+      <option>Pending</option>
+      <option>InProgress</option>
+      <option>Completed</option>
+    </select>
+
+  </div>
+
+  <button type="submit">
+    Update
+  </button>
+
+</form>

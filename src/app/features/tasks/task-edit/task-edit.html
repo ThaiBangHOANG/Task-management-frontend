@@ -27,18 +27,11 @@
 
   <div>
     <label>Status:</label>
-    <select
-      [(ngModel)]="task.status"
-      name="status"
-    >
-      <option value="Pending">
-        Pending
-      </option>
-
-      <option value="Completed">
-        Completed
-      </option>
-    </select>
+    <select [(ngModel)]="task.status" name="status">
+  <option [ngValue]="0">Pending</option>
+  <option [ngValue]="1">In Progress</option>
+  <option [ngValue]="2">Completed</option>
+</select>
   </div>
 
   <br>

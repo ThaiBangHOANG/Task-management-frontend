@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../../../core/services/task.service';
+import { Task } from '../../../core/models/task.model';
 
 @Component({
   selector: 'app-task-edit',
@@ -16,7 +17,7 @@ export class TaskEditComponent implements OnInit {
   task: any = {
     title: '',
     description: '',
-    status: 'Pending'
+    status: 0
   };
 
   taskId!: number;

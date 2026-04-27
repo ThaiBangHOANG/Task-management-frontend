@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Task } from '../models/task.model';
 
 @Injectable({
   providedIn: 'root',
@@ -30,10 +31,13 @@ export class TaskService {
   );
 }
 
-updateTask(id: number, task: any) {
-  return this.http.put(
-    `http://localhost:5150/api/tasks/${id}`,
-    task
-  );
+updateTask(id: number,task: Task) {
+  const request = {
+    title: task.title,
+    description: task.description,
+    status: task.status
+  };
+
+  return this.http.put(`${this.apiUrl}/${task.id}`, request);
 }
 }
