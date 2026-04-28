@@ -9,5 +9,5 @@ import { NavbarComponent } from '../app/shared/components/navbar/navbar';
   styleUrl: './app.css'
 })
 export class AppComponent {
-  protected readonly title = signal('frontend');
+  protected readonly title = signal('Task Management');
 }
