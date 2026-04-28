@@ -33,6 +33,8 @@ export class TaskListComponent {
     private toastr: ToastrService,
   ) {}
 
+  deletingId: number | null = null;
+
   ngOnInit(): void {
     this.loadTasks();
   }
@@ -101,9 +103,14 @@ export class TaskListComponent {
   }
 
   deleteTask(id: number) {
-    if (!confirm('Delete this task?')) {
+
+    const confirmed = confirm('Are you sure you want to delete this task?');
+
+    if (!confirmed) {
       return;
     }
+
+    this.deletingId = id;
 
     this.taskService.deleteTask(id).subscribe({
       next: () => {
@@ -112,6 +119,7 @@ export class TaskListComponent {
       },
       error: (err) => {
         this.toastr.error('Failed to delete task');
+        this.deletingId = null;
       },
     });
   }

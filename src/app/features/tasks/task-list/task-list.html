@@ -1,81 +1,76 @@
 <div class="container">
+  <h2>Task List</h2>
 
-<h2>Task List</h2>
+  <button routerLink="/tasks/create">Create Task</button>
 
-<button routerLink="/tasks/create">Create Task</button>
+  <br /><br />
 
-<br /><br />
+  <div class="filters">
+    <input type="text" class="searchButton" placeholder="Search..." [(ngModel)]="search" />
 
-<input type="text" placeholder="Search..." [(ngModel)]="search" />
+    <select [(ngModel)]="status">
+      <option [ngValue]="undefined">All Status</option>
+      <option [ngValue]="0">Pending</option>
+      <option [ngValue]="1">In Progress</option>
+      <option [ngValue]="2">Completed</option>
+    </select>
 
-<select [(ngModel)]="status">
-  <option [ngValue]="undefined">All Status</option>
+    <select [(ngModel)]="sortBy">
+      <option value="createdAt">Created Date</option>
+      <option value="title">Title</option>
+    </select>
 
-  <option [ngValue]="0">Pending</option>
+    <label class="checkbox">
+      <input type="checkbox" [(ngModel)]="sortDescending" />
+      Descending
+    </label>
 
-  <option [ngValue]="1">In Progress</option>
-
-  <option [ngValue]="2">Completed</option>
-</select>
-
-<select [(ngModel)]="sortBy">
-  <option value="createdAt">Created Date</option>
-
-  <option value="title">Title</option>
-</select>
-
-<label>
-  <input type="checkbox" [(ngModel)]="sortDescending" />
-
-  Descending
-</label>
-
-<button (click)="loadTasks()">Apply</button>
-
-<br /><br />
-
-<div *ngIf="isLoading">
-
-  Loading...
-
-</div>
-
-<table border="1" *ngIf="!isLoading">
-  <tr>
-    <th>Title</th>
-    <th>Status</th>
-    <th>Actions</th>
-  </tr>
-
-  <tr *ngFor="let task of tasks">
-    <td>
-      {{ task.title }}
-    </td>
-
-    <td>
-      {{ task.statusName | titlecase }}
-    </td>
-
-    <td>
-      <button [routerLink]="['/tasks/edit', task.id]">Edit</button>
-
-      <button (click)="deleteTask(task.id)">Delete</button>
-    </td>
-  </tr>
-</table>
-
-@if (!isLoading && tasks.length === 0) {
-  <div>
-    No tasks found. Create your first task!
+    <button (click)="loadTasks()">Apply</button>
   </div>
-}
 
-<br />
+  <br />
 
-<button (click)="previousPage()" [disabled]="page === 1">Previous</button>
+  <div *ngIf="isLoading">Loading...</div>
 
-<span> Page {{ page }} / {{ totalPages }} </span>
+  <div class="table-wrapper">
+    <table border="1" *ngIf="!isLoading">
+      <tr>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
 
-<button (click)="nextPage()" [disabled]="page === totalPages">Next</button>
+      <tr *ngFor="let task of tasks">
+        <td>
+          {{ task.title }}
+        </td>
 
+        <td>
+          {{ task.statusName | titlecase }}
+        </td>
+
+        <td class="actions">
+          <button [routerLink]="['/tasks/edit', task.id]">Edit</button>
+
+          <button (click)="deleteTask(task.id)" [disabled]="deletingId === task.id">
+            {{ deletingId === task.id ? 'Deleting...' : 'Delete' }}
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  @if (!isLoading && tasks.length === 0) {
+    <div>No tasks found. Create your first task!</div>
+  }
+
+  <br />
+
+  <div class="pagination">
+    <button (click)="previousPage()" [disabled]="page === 1">Previous</button>
+
+    <span> Page {{ page }} / {{ totalPages }} </span>
+
+    <button (click)="nextPage()" [disabled]="page === totalPages">Next</button>
+  </div>
 </div>

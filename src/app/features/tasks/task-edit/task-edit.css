@@ -1,0 +1,147 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.form-container {
+  max-width: 600px;
+
+  margin: 40px auto;
+
+  padding: 24px;
+
+  background: white;
+
+  border-radius: 8px;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.page-container {
+  max-width: 1000px;
+
+  margin: 40px auto;
+
+  padding: 24px;
+
+  background: white;
+
+  border-radius: 8px;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+  font-size: 22px;
+  font-weight: 600;
+
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+
+  margin-bottom: 6px;
+
+  font-weight: 500;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+
+  padding: 8px 10px;
+
+  border: 1px solid #ccc;
+
+  border-radius: 6px;
+
+  font-size: 14px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+
+  border-color: #2f6fb3;
+}
+
+button {
+  padding: 8px 16px;
+
+  border-radius: 6px;
+
+  border: none;
+
+  cursor: pointer;
+
+  font-size: 14px;
+  font-weight: 500;
+  min-width: 120px;
+}
+
+button.primary {
+  background-color: #2f6fb3;
+
+  color: white;
+}
+
+button.primary:hover {
+  background-color: #245a91;
+}
+
+button.danger {
+  background-color: #e74c3c;
+
+  color: white;
+}
+
+button.danger:hover {
+  background-color: #c0392b;
+}
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  margin-top: 16px;
+}
+
+th,
+td {
+  padding: 10px;
+
+  border-bottom: 1px solid #ddd;
+
+  text-align: left;
+}
+
+th {
+  background-color: #f5f5f5;
+}
+
+tr:hover {
+  background-color: #fafafa;
+}
+
+.pagination {
+  margin-top: 16px;
+
+  display: flex;
+
+  gap: 10px;
+
+  align-items: center;
+}
+
+.secondary {
+  background-color: #fa3301;
+  margin-left: 10px;
+  color: white;
+}

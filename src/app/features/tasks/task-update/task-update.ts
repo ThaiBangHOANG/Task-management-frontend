@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TaskService } from '../../../core/services/task.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-task-update',
@@ -22,7 +23,8 @@ export class TaskUpdateComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private location: Location
   ) {}
 
   ngOnInit() {
@@ -38,7 +40,15 @@ export class TaskUpdateComponent implements OnInit {
 
   }
 
+  goBack() {
+    this.location.back();
+  }
+
+  isSubmitting = false;
+
   updateTask() {
+    if (this.isSubmitting) return;
+    this.isSubmitting = true;
 
     this.taskService.updateTask(this.id, this.task)
       .subscribe({

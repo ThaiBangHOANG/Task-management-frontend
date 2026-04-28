@@ -9,7 +9,6 @@ h2 {
 }
 
 .header {
-
   display: flex;
 
   justify-content: space-between;
@@ -17,11 +16,9 @@ h2 {
   align-items: center;
 
   margin-bottom: 20px;
-
 }
 
 .logout-btn {
-
   padding: 8px 14px;
 
   background-color: #e53935;
@@ -33,19 +30,20 @@ h2 {
   border-radius: 6px;
 
   cursor: pointer;
-
 }
 
 .logout-btn:hover {
-
   background-color: #c62828;
-
 }
 
 button {
+  border-radius: 6px;
+  font-size: 14px;
   margin-left: 5px;
-  padding: 6px 10px;
+  padding: 8px 16px;
   cursor: pointer;
+  font-weight: 500;
+  min-width: 120px;
 }
 
 input,
@@ -85,9 +83,113 @@ button:disabled {
 }
 
 .error {
-
   color: red;
   font-size: 13px;
   margin-top: 4px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+
+    margin: 10px;
+  }
+
+  .searchButton {
+    width: 96%!important;
+  }
+
+  .filters {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+  }
+
+  .filters input,
+  .filters select,
+  .filters button {
+    width: 100%;
+
+    margin: 0;
+  }
+
+  .checkbox {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 337px;
+    display: table-row-group;
+  }
+
+  .actions {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+
+  .pagination {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 8px;
+  }
+}
+
+.container > button {
+  display: block;
+
+  margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+  .container > button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+
+  table {
+
+    font-size: 14px;
+
+    min-width: 520px;
+
+  }
+
+  th,
+  td {
+    padding: 12px 10px;
+  }
+
+  th {
+
+    font-weight: 600;
+
+  }
+
+  td {
+    word-break: break-word;
+  }
 
 }

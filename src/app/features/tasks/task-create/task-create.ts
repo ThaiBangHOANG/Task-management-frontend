@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TaskService } from '../../../core/services/task.service';
 import { ToastrService } from 'ngx-toastr';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-task-create',
@@ -23,11 +24,18 @@ export class TaskCreateComponent {
     private taskService: TaskService,
     private router: Router,
     private toast: ToastrService,
+    private location: Location
   ) {}
 
-  createTask() {
-    this.toast.info ('Creating task:', this.task.title);
+  isSubmitting = false;
 
+  goBack() {
+    this.location.back();
+  }
+
+  createTask() {
+    if (this.isSubmitting) return;
+    this.isSubmitting = true;
     this.taskService.createTask(this.task).subscribe({
       next: () => {
         this.toast.success('Task created successfully');

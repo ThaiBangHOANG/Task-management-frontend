@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../../../core/services/task.service';
 import { ToastrService } from 'ngx-toastr';
 import { throwError } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-task-edit',
@@ -27,7 +28,8 @@ export class TaskEditComponent implements OnInit {
     private taskService: TaskService,
     private route: ActivatedRoute,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -38,6 +40,10 @@ export class TaskEditComponent implements OnInit {
 
     this.loadTask();
 
+  }
+
+  goBack() {
+    this.location.back();
   }
 
   loadTask() {

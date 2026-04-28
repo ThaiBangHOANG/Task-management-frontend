@@ -1,8 +1,9 @@
-<h2>Update Task</h2>
+<div class="form-container">
+<div class="page-title">Update Task</div>
 
 <form (ngSubmit)="updateTask()">
 
-  <div>
+  <div class="form-group">
     <label>Title</label>
     <input
       type="text"
@@ -12,7 +13,7 @@
     >
   </div>
 
-  <div>
+  <div class="form-group">
     <label>Description</label>
     <input
       type="text"
@@ -21,7 +22,7 @@
     >
   </div>
 
-  <div>
+  <div class="form-group">
     <label>Status</label>
 
     <select
@@ -35,8 +36,16 @@
 
   </div>
 
-  <button type="submit">
-    Update
+  <button type="submit" class="primary" [disabled]="isSubmitting">
+    {{ isSubmitting ? 'Updating Task...' : 'Update Task' }}
+  </button>
+  <button
+    type="button"
+    class="secondary butCancel"
+    (click)="goBack()"
+  >
+    Cancel
   </button>
 
 </form>
+</div>
