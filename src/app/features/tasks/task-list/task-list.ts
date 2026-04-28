@@ -6,11 +6,14 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
+import { ConfirmDialogComponent } from '../../../shared/confirm-dialog/confirm-dialog';
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, TranslateModule, ConfirmDialogComponent],
   templateUrl: './task-list.html',
   styleUrl: './task-list.css',
 })
@@ -31,8 +34,10 @@ export class TaskListComponent {
     private authService: AuthService,
     private router: Router,
     private toastr: ToastrService,
+    private translate: TranslateService,
   ) {}
 
+  showDeleteDialog = false;
   deletingId: number | null = null;
 
   ngOnInit(): void {
@@ -58,7 +63,7 @@ export class TaskListComponent {
           this.isLoading = false;
         },
         error: (err) => {
-         this.toastr.error('Failed to load tasks' + err.message);
+          this.toastr.error(this.translate.instant('FAILED_TO_LOAD_TASKS') + err.message);
           this.isLoading = false;
         },
       });
@@ -95,32 +100,38 @@ export class TaskListComponent {
   }
 
   logout() {
-    if (!confirm('Are you sure you want to logout?')) {
+    if (!confirm(this.translate.instant('CONFIRM_LOGOUT'))) {
       return;
     }
     this.authService.logout();
     this.router.navigate(['/login']);
   }
 
+  confirmMessage = '';
+
   deleteTask(id: number) {
-
-    const confirmed = confirm('Are you sure you want to delete this task?');
-
-    if (!confirmed) {
-      return;
-    }
-
     this.deletingId = id;
+    this.confirmMessage = this.translate.instant('CONFIRM_DELETE');
+    this.showDeleteDialog = true;
+  }
 
-    this.taskService.deleteTask(id).subscribe({
-      next: () => {
-        this.loadTasks();
-        this.toastr.success('Task deleted successfully');
-      },
-      error: (err) => {
-        this.toastr.error('Failed to delete task');
-        this.deletingId = null;
-      },
+  confirmDelete() {
+    if (!this.deletingId) return;
+
+    this.taskService.deleteTask(this.deletingId).subscribe(() => {
+      this.loadTasks();
+
+      this.showDeleteDialog = false;
+
+      this.deletingId = null;
+
+      this.toastr.success(this.translate.instant('TASK_DELETED'));
     });
+  }
+
+  cancelDelete() {
+    this.showDeleteDialog = false;
+
+    this.deletingId = null;
   }
 }

@@ -6,11 +6,12 @@ import { TaskService } from '../../../core/services/task.service';
 import { ToastrService } from 'ngx-toastr';
 import { throwError } from 'rxjs';
 import { Location } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-task-edit',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslateModule],
   templateUrl: './task-edit.html',
   styleUrl: './task-edit.css'
 })
@@ -29,7 +30,8 @@ export class TaskEditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private toastr: ToastrService,
-    private location: Location
+    private location: Location,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -54,7 +56,7 @@ export class TaskEditComponent implements OnInit {
           this.task = data;
         },
         error: (err) => {
-          this.toastr.error('Failed to load task');
+          this.toastr.error(this.translate.instant('FAILED_TO_LOAD_TASKS'));
           return throwError(() => err);  
                 }
       });
@@ -66,11 +68,11 @@ export class TaskEditComponent implements OnInit {
     this.taskService.updateTask(this.taskId, this.task)
       .subscribe({
         next: () => {
-          this.toastr.success('Task updated successfully');
+          this.toastr.success(this.translate.instant('TASK_UPDATED_SUCCESSFULLY'));
           this.router.navigate(['/tasks']);
         },
         error: (err) => {
-          this.toastr.error('Failed to update task');
+          this.toastr.error(this.translate.instant('FAILED_TO_UPDATE_TASK'));
 
           return throwError(() => err);
         }

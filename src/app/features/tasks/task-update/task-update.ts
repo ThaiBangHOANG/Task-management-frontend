@@ -3,11 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TaskService } from '../../../core/services/task.service';
 import { Location } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-task-update',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, TranslateModule],
   templateUrl: './task-update.html'
 })
 export class TaskUpdateComponent implements OnInit {
@@ -24,7 +25,8 @@ export class TaskUpdateComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private taskService: TaskService,
-    private location: Location
+    private location: Location,
+    private translate: TranslateService
   ) {}
 
   ngOnInit() {
@@ -56,7 +58,5 @@ export class TaskUpdateComponent implements OnInit {
           this.router.navigate(['/tasks']);
         }
       });
-
   }
-
 }

@@ -1,33 +1,33 @@
 <div class="form-container">
-  <div class="page-title">Edit Task</div>
+  <div class="page-title">{{ 'EDIT_TASK' | translate }}</div>
 
   <form (ngSubmit)="updateTask()">
     <div>
-      <label>Title:</label>
+      <label>{{ 'TITLE' | translate }}:</label>
       <input type="text" [(ngModel)]="task.title" name="title" required />
     </div>
 
     <br />
 
     <div class="form-group">
-      <label>Description:</label>
+      <label>{{ 'DESCRIPTION' | translate }}:</label>
       <input type="text" [(ngModel)]="task.description" name="description" />
     </div>
 
     <br />
 
     <div class="form-group">
-      <label>Status:</label>
+      <label>{{ 'STATUS' | translate }}:</label>
       <select [(ngModel)]="task.status" name="status">
-        <option [ngValue]="0">Pending</option>
-        <option [ngValue]="1">In Progress</option>
-        <option [ngValue]="2">Completed</option>
+        <option [ngValue]="0">{{ 'PENDING' | translate }}</option>
+        <option [ngValue]="1">{{ 'IN_PROGRESS' | translate }}</option>
+        <option [ngValue]="2">{{ 'COMPLETED' | translate }}</option>
       </select>
     </div>
 
     <br />
 
-    <button type="submit">Update Task</button>
-    <button type="button" class="secondary" (click)="goBack()">Cancel</button>
+    <button type="submit">{{ 'UPDATE_TASK' | translate }}</button>
+    <button type="button" class="secondary" (click)="goBack()">{{ 'CANCEL' | translate }} </button>
   </form>
 </div>

@@ -99,3 +99,29 @@ button:disabled {
   margin-top: 5px;
 
 }
+
+.login-btn {
+  width: 106%;
+
+  margin-top: 12px;
+
+  padding: 10px;
+
+  font-size: 16px;
+
+  border-radius: 6px;
+
+  background-color: #999;
+
+  color: white;
+
+  border: none;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.login-btn:hover {
+  opacity: 0.9;
+}

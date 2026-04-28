@@ -5,11 +5,12 @@ import { Router } from '@angular/router';
 import { TaskService } from '../../../core/services/task.service';
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-task-create',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslateModule],
   templateUrl: './task-create.html',
   styleUrl: './task-create.css',
 })
@@ -24,7 +25,8 @@ export class TaskCreateComponent {
     private taskService: TaskService,
     private router: Router,
     private toast: ToastrService,
-    private location: Location
+    private location: Location,
+    private translate: TranslateService
   ) {}
 
   isSubmitting = false;
@@ -38,12 +40,12 @@ export class TaskCreateComponent {
     this.isSubmitting = true;
     this.taskService.createTask(this.task).subscribe({
       next: () => {
-        this.toast.success('Task created successfully');
+        this.toast.success(this.translate.instant('TASK_CREATED_SUCCESSFULLY'));
         this.router.navigate(['/tasks']);
       },
       error: (err) => {
         console.error(err);
-        this.toast.error('Create task failed');
+        this.toast.error(this.translate.instant('FAILED_TO_CREATE_TASK'));
       },
     });
   }

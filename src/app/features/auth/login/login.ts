@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, TranslateModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -21,15 +22,16 @@ export class LoginComponent {
     private authService: AuthService,
     private router: Router,
     private toast: ToastrService,
+    private translate: TranslateService
   ) {}
 
   login() {
     if (!this.username?.trim() || !this.password) {
-      this.toast.warning('Username required');
+      this.toast.warning(this.translate.instant('USERNAME_REQUIRED'));
       return;
     }
     if (!this.password?.trim()) {
-      this.toast.warning('Password required');
+      this.toast.warning(this.translate.instant('PASSWORD_REQUIRED'));
       return;
     }
 
@@ -43,13 +45,13 @@ export class LoginComponent {
     this.authService.login(data).subscribe({
       next: (res: any) => {
         this.authService.saveToken(res.token);
-        this.toast.success('Login successful');
+        this.toast.success(this.translate.instant('LOGIN_SUCCESSFUL'));
         this.router.navigate(['/tasks']);
       },
 
       error: (err) => {
         this.loading = false;
-        this.toast.error('Login failed');
+        this.toast.error(this.translate.instant('LOGIN_FAILED'));
       },
     });
   }

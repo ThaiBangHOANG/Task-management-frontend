@@ -1,9 +1,9 @@
 <div class="login-container">
   <div class="login-card">
 
-<h2>Login</h2>
+<h2>{{ 'LOGIN' | translate }}</h2>
 
-<label for="username">Username:</label>
+<label for="username">{{ 'USERNAME' | translate }}:</label>
 <input
   type="text"
   [(ngModel)]="username"
@@ -12,47 +12,48 @@
   minlength="3"
   maxlength="50"
   #usernameInput="ngModel"
-  placeholder="Enter username"
+  placeholder="{{ 'ENTER_USERNAME' | translate }}"
   (keyup.enter)="login()"
 />
 
 @if (usernameInput.invalid && usernameInput.touched)
 {
   <div>
-  Username is required.
+  {{ 'USERNAME_REQUIRED' | translate }}
 </div>
 }
 
 @if (usernameInput.errors?.['minlength']) {
-      Minimum 3 characters
+      {{ 'USERNAME_TOO_SHORT' | translate }}
     }
 
 <br><br>
 
-<label for="password">Password:</label>
+<label for="password">{{ 'PASSWORD' | translate }}:</label>
 <input
   type="password"
   [(ngModel)]="password"
   required
   minlength="6"
   #passwordInput="ngModel"
-  placeholder="Enter password"
+  placeholder="{{ 'ENTER_PASSWORD' | translate }}"
   (keyup.enter)="login()"
 />
 
 @if (passwordInput.invalid && passwordInput.touched)
 {
   <div>
-  Password is required.
+  {{ 'PASSWORD_REQUIRED' | translate }}
 </div>
 }
  @if (passwordInput.errors?.['minlength']) {
-      Minimum 6 characters
+      {{ 'PASSWORD_TOO_SHORT' | translate }}
     }
 
 <br><br>
 
 <button
+      class="login-btn"
       (click)="login()"
       [disabled]="
         usernameInput.invalid ||
@@ -60,7 +61,7 @@
         loading
       "
     >
-      {{ loading ? 'Logging in...' : 'Login' }}
+      {{ loading ? 'LOADING' : 'LOGIN' | translate }}
     </button>
 
   </div>

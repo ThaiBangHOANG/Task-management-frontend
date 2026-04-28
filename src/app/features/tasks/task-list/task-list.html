@@ -1,43 +1,43 @@
 <div class="container">
-  <h2>Task List</h2>
+  <h2>{{ 'TASK_LIST' | translate }}</h2>
 
-  <button routerLink="/tasks/create">Create Task</button>
+  <button routerLink="/tasks/create">{{ 'CREATE_TASK' | translate }}</button>
 
   <br /><br />
 
   <div class="filters">
-    <input type="text" class="searchButton" placeholder="Search..." [(ngModel)]="search" />
+    <input type="text" class="searchButton" placeholder="{{ 'SEARCH' | translate }}" [(ngModel)]="search" />
 
     <select [(ngModel)]="status">
-      <option [ngValue]="undefined">All Status</option>
-      <option [ngValue]="0">Pending</option>
-      <option [ngValue]="1">In Progress</option>
-      <option [ngValue]="2">Completed</option>
+      <option [ngValue]="undefined">{{ 'ALL_STATUS' | translate }}</option>
+      <option [ngValue]="0">{{ 'PENDING' | translate }}</option>
+      <option [ngValue]="1">{{ 'IN_PROGRESS' | translate }}</option>
+      <option [ngValue]="2">{{ 'COMPLETED' | translate }}</option>
     </select>
 
     <select [(ngModel)]="sortBy">
-      <option value="createdAt">Created Date</option>
-      <option value="title">Title</option>
+      <option value="createdAt">{{ 'CREATED_DATE' | translate }}</option>
+      <option value="title">{{ 'TITLE' | translate }}</option>
     </select>
 
     <label class="checkbox">
       <input type="checkbox" [(ngModel)]="sortDescending" />
-      Descending
+      {{ 'DESCENDING' | translate }}
     </label>
 
-    <button (click)="loadTasks()">Apply</button>
+    <button (click)="loadTasks()">{{ 'APPLY' | translate }}</button>
   </div>
 
   <br />
 
-  <div *ngIf="isLoading">Loading...</div>
+  <div *ngIf="isLoading">{{ 'LOADING' | translate }}</div>
 
   <div class="table-wrapper">
     <table border="1" *ngIf="!isLoading">
       <tr>
-        <th>Title</th>
-        <th>Status</th>
-        <th>Actions</th>
+        <th>{{ 'TITLE' | translate }}</th>
+        <th>{{ 'STATUS' | translate }}</th>
+        <th>{{ 'ACTIONS' | translate }}</th>
       </tr>
 
       <tr *ngFor="let task of tasks">
@@ -50,10 +50,10 @@
         </td>
 
         <td class="actions">
-          <button [routerLink]="['/tasks/edit', task.id]">Edit</button>
+          <button [routerLink]="['/tasks/edit', task.id]">{{ 'EDIT' | translate }}</button>
 
           <button (click)="deleteTask(task.id)" [disabled]="deletingId === task.id">
-            {{ deletingId === task.id ? 'Deleting...' : 'Delete' }}
+            {{ (deletingId === task.id ? 'DELETING' : 'DELETE') | translate }}
           </button>
         </td>
       </tr>
@@ -61,16 +61,23 @@
   </div>
 
   @if (!isLoading && tasks.length === 0) {
-    <div>No tasks found. Create your first task!</div>
+    <div>{{ 'NO_TASKS_FOUND' | translate }}</div>
   }
 
   <br />
 
   <div class="pagination">
-    <button (click)="previousPage()" [disabled]="page === 1">Previous</button>
+    <button (click)="previousPage()" [disabled]="page === 1">{{ 'PREVIOUS' | translate }}</button>
 
-    <span> Page {{ page }} / {{ totalPages }} </span>
+    <span> {{ 'PAGE' | translate }} {{ page }} / {{ totalPages }} </span>
 
-    <button (click)="nextPage()" [disabled]="page === totalPages">Next</button>
+    <button (click)="nextPage()" [disabled]="page === totalPages">{{ 'NEXT' | translate }}</button>
   </div>
 </div>
+
+<app-confirm-dialog
+  *ngIf="showDeleteDialog"
+  [message]="confirmMessage"
+  (confirmed)="confirmDelete()"
+  (cancelled)="cancelDelete()">
+</app-confirm-dialog>

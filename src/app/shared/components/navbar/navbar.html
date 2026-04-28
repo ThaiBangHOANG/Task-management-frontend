@@ -1,13 +1,17 @@
 <header class="navbar">
-  <div class="nav-left">Task Management</div>
+  <div class="nav-left">{{ 'MANAGEMENT' | translate }}</div>
 
   @if (isLoggedIn) {
     <span>
       {{ username }}
     </span>
     <div class="nav-right">
-      <button (click)="logout()">Logout</button>
-      <button (click)="toggleDarkMode()">🌙</button>
+      <select (change)="changeLang($event)" class="language-select">
+        <option value="en">{{ 'ENGLISH' | translate }}</option>
+        <option value="fr">{{ 'FRENCH' | translate }}</option>
+      </select>
+      <button (click)="logout()">{{ 'LOGOUT' | translate }}</button>
+      <button (click)="toggleDarkMode()" [title]="'DARK_MODE' | translate">🌙</button>
     </div>
   }
 </header>
