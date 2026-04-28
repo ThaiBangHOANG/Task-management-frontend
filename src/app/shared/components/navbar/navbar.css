@@ -11,12 +11,17 @@
   font-weight: 600;
 }
 
+.nav-right {
+  display: flex;
+
+  gap: 10px;
+}
+
 .navbar-title {
   font-size: 18px;
 }
 
 .logout-btn {
-
   background-color: #e74c3c;
 
   color: white;
@@ -32,7 +37,6 @@
   font-size: 14px;
 
   transition: 0.2s;
-
 }
 
 button {

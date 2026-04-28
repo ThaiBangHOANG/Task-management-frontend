@@ -3,3 +3,67 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+body.dark {
+  background-color: #121212;
+
+  color: #ffffff;
+}
+
+body.dark .container {
+  background-color: #1e1e1e;
+}
+
+body.dark table {
+  background-color: #1e1e1e;
+}
+
+body.dark th {
+  background-color: #2c2c2c;
+}
+
+body.dark input,
+body.dark select,
+body.dark textarea {
+  background-color: #2c2c2c;
+
+  color: white;
+
+  border: 1px solid #555;
+}
+
+body.dark input::placeholder {
+  color: #bbbbbb;
+}
+
+body.dark label {
+  color: #0e0d0d;
+}
+
+body.dark button {
+  background-color: #333;
+
+  color: white;
+}
+
+button {
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+
+  opacity: 0.9;
+}
+
+tr {
+  transition: background-color 0.2s;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+body.dark tr:hover {
+  background-color: #333;
+}

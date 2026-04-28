@@ -22,12 +22,18 @@ export class NavbarComponent {
   }
 
   ngOnInit() {
+    const saved = localStorage.getItem('darkMode');
+
+    if (saved === 'true') {
+      document.body.classList.add('dark');
+    }
+    
     this.authService.isLoggedIn$.subscribe((loggedIn) => {
       this.isLoggedIn = loggedIn;
       if (loggedIn) {
         this.username = this.authService.getUsername();
       }
-    }); 
+    });
   }
   logout() {
     if (!this.authService.isLoggedIn$) {
@@ -37,5 +43,13 @@ export class NavbarComponent {
     this.authService.logout();
     this.toastr.success('Logout successful');
     this.router.navigate(['/login']);
+  }
+
+  toggleDarkMode() {
+    document.body.classList.toggle('dark');
+
+    const isDark = document.body.classList.contains('dark');
+
+    localStorage.setItem('darkMode', isDark.toString());
   }
 }
