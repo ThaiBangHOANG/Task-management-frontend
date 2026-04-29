@@ -66,6 +66,7 @@ Azure Static Web Apps
 
 # Project Structure
 
+```text
 Task Management Frontend
 ├───app
 │   ├───core
@@ -91,7 +92,7 @@ Task Management Frontend
 │   └───i18n
 ├───environments
 └───ngx-toastr
-
+```
 ---
 
 # Running Locally
@@ -142,11 +143,10 @@ Real-world deployment
 
 Production-ready coding practices
 
+It is part of my portfolio for applying to .NET / Angular developer positions in France.
+
 ---
 
 # Author
 
 Thai Bang HOANG
-
-
-It is part of my portfolio for applying to .NET / Angular developer positions in France.
