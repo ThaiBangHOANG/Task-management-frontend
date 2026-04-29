@@ -1,59 +1,152 @@
-# Frontend
+## Task Management Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.1.
+--- 
 
-## Development server
+# Overview
 
-To start a local development server, run:
+This project is a modern Angular (version 20.2.1) web application that communicates with the Task Management API. It provides a clean user interface for authentication and task management.
 
-```bash
-ng serve
-```
+The application is deployed on Azure Static Web Apps.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+# Live Application
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Frontend URL:
 
-```bash
-ng generate component component-name
-```
+https://proud-mud-076774a03.7.azurestaticapps.net
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+# Features
 
-## Building
+User login
 
-To build the project run:
+JWT authentication
 
-```bash
-ng build
-```
+Task creation
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Task editing
 
-## Running unit tests
+Task deletion
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Pagination
 
-```bash
-ng test
-```
+Filtering
 
-## Running end-to-end tests
+Sorting
 
-For end-to-end (e2e) testing, run:
+Internationalization (English / French)
 
-```bash
-ng e2e
-```
+Responsive UI
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+API integration
 
-## Additional Resources
+Production deployment
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+--- 
+
+# Tech Stack
+
+Angular
+
+TypeScript
+
+HTML
+
+CSS
+
+RxJS
+
+ngx-translate
+
+Azure Static Web Apps
+
+--- 
+
+# Project Structure
+
+Task Management Frontend
+├───app
+│   ├───core
+│   │   ├───guards
+│   │   ├───interceptors
+│   │   ├───models
+│   │   └───services
+│   ├───features
+│   │   ├───auth
+│   │   │   ├───login
+│   │   │   └───register
+│   │   └───tasks
+│   │       ├───task-create
+│   │       ├───task-edit
+│   │       ├───task-list
+│   │       └───task-update
+│   └───shared
+│       ├───components
+│       │   └───navbar
+│       ├───confirm-dialog
+│       └───pipes
+├───assets
+│   └───i18n
+├───environments
+└───ngx-toastr
+
+---
+
+# Running Locally
+
+Clone repository:
+
+git clone https://github.com/ThaiBangHOANG/Task-management-frontend
+
+Install dependencies:
+
+npm install
+
+Run application:
+
+npm start
+
+Default URL:
+
+http://localhost:4200
+
+---
+
+# Deployment
+
+The frontend is deployed using:
+
+Azure Static Web Apps
+
+Deployment process:
+
+npm run build
+
+Code is pushed to GitHub, and Azure automatically deploys the application.
+
+---
+
+# Purpose of This Project
+
+This project was built to demonstrate:
+
+Fullstack development skills
+
+Clean architecture
+
+Secure authentication
+
+Real-world deployment
+
+Production-ready coding practices
+
+---
+
+# Author
+
+Thai Bang HOANG
+
+
+It is part of my portfolio for applying to .NET / Angular developer positions in France.
