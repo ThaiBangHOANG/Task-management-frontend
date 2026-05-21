@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://thaibang-dcghgrg4bfdaefgd.francecentral-01.azurewebsites.net/api'
+  apiUrl: 'https://task-api-container.livelywave-91602587.francecentral.azurecontainerapps.io'
 };
