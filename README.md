@@ -1,59 +1,152 @@
-# Frontend
+## Task Management Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.1.
+--- 
 
-## Development server
+# Overview
 
-To start a local development server, run:
+This project is a modern Angular (version 20.2.1) web application that communicates with the Task Management API. It provides a clean user interface for authentication and task management.
 
-```bash
-ng serve
+The application is deployed on Azure Static Web Apps.
+
+---
+
+# Live Application
+
+Frontend URL:
+
+https://proud-mud-076774a03.7.azurestaticapps.net
+
+---
+
+# Features
+
+User login
+
+JWT authentication
+
+Task creation
+
+Task editing
+
+Task deletion
+
+Pagination
+
+Filtering
+
+Sorting
+
+Internationalization (English / French)
+
+Responsive UI
+
+API integration
+
+Production deployment
+
+--- 
+
+# Tech Stack
+
+Angular
+
+TypeScript
+
+HTML
+
+CSS
+
+RxJS
+
+ngx-translate
+
+Azure Static Web Apps
+
+--- 
+
+# Project Structure
+
+```text
+Task Management Frontend
+├───app
+│   ├───core
+│   │   ├───guards
+│   │   ├───interceptors
+│   │   ├───models
+│   │   └───services
+│   ├───features
+│   │   ├───auth
+│   │   │   ├───login
+│   │   │   └───register
+│   │   └───tasks
+│   │       ├───task-create
+│   │       ├───task-edit
+│   │       ├───task-list
+│   │       └───task-update
+│   └───shared
+│       ├───components
+│       │   └───navbar
+│       ├───confirm-dialog
+│       └───pipes
+├───assets
+│   └───i18n
+├───environments
+└───ngx-toastr
 ```
+---
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+# Running Locally
 
-## Code scaffolding
+Clone repository:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+git clone https://github.com/ThaiBangHOANG/Task-management-frontend
 
-```bash
-ng generate component component-name
-```
+Install dependencies:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+npm install
 
-```bash
-ng generate --help
-```
+Run application:
 
-## Building
+npm start
 
-To build the project run:
+Default URL:
 
-```bash
-ng build
-```
+http://localhost:4200
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+# Deployment
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+The frontend is deployed using:
 
-```bash
-ng test
-```
+Azure Static Web Apps
 
-## Running end-to-end tests
+Deployment process:
 
-For end-to-end (e2e) testing, run:
+npm run build
 
-```bash
-ng e2e
-```
+Code is pushed to GitHub, and Azure automatically deploys the application.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+# Purpose of This Project
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+This project was built to demonstrate:
+
+Fullstack development skills
+
+Clean architecture
+
+Secure authentication
+
+Real-world deployment
+
+Production-ready coding practices
+
+It is part of my portfolio for applying to .NET / Angular developer positions in France.
+
+---
+
+# Author
+
+Thai Bang HOANG
