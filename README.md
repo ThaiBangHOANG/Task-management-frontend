@@ -4,9 +4,7 @@
 
 # Overview
 
-This project is a modern Angular (version 20.2.1) web application that communicates with the Task Management API. It provides a clean user interface for authentication and task management.
-
-The application is deployed on Azure Static Web Apps.
+A modern Angular frontend application for task management, fully containerized with Docker and deployed on Azure Container Apps.
 
 ---
 
@@ -14,7 +12,7 @@ The application is deployed on Azure Static Web Apps.
 
 Frontend URL:
 
-https://proud-mud-076774a03.7.azurestaticapps.net
+https://task-frontend-container.livelywave-91602587.francecentral.azurecontainerapps.io
 
 ---
 
@@ -24,17 +22,9 @@ User login
 
 JWT authentication
 
-Task creation
+Task CRUD complete
 
-Task editing
-
-Task deletion
-
-Pagination
-
-Filtering
-
-Sorting
+Pagination / Filtering / Sorting
 
 Internationalization (English / French)
 
@@ -42,7 +32,11 @@ Responsive UI
 
 API integration
 
-Production deployment
+Production Environment Configuration
+
+Dockerized Angular Application
+
+Azure Cloud Deployment
 
 --- 
 
@@ -52,15 +46,17 @@ Angular
 
 TypeScript
 
-HTML
-
-CSS
-
 RxJS
 
 ngx-translate
 
-Azure Static Web Apps
+Angular Router
+
+Docker
+
+Nginx
+
+Azure Container Apps
 
 --- 
 
@@ -107,7 +103,7 @@ npm install
 
 Run application:
 
-npm start
+ng serve
 
 Default URL:
 
@@ -115,35 +111,28 @@ http://localhost:4200
 
 ---
 
-# Deployment
 
-The frontend is deployed using:
+# Docker
 
-Azure Static Web Apps
+Build image
 
-Deployment process:
+docker build -t task-frontend .
 
-npm run build
+Run container
 
-Code is pushed to GitHub, and Azure automatically deploys the application.
+docker run -p 4200:80 task-frontend
 
 ---
 
-# Purpose of This Project
+# Deployment
 
-This project was built to demonstrate:
+Frontend deployed using:
 
-Fullstack development skills
+DockerHub
 
-Clean architecture
+Azure Container Apps
 
-Secure authentication
-
-Real-world deployment
-
-Production-ready coding practices
-
-It is part of my portfolio for applying to .NET / Angular developer positions in France.
+Github Actions
 
 ---
 
