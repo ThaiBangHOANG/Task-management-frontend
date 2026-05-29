@@ -13,6 +13,9 @@ export class AuthService {
   constructor(private http: HttpClient) {
     const token = this.getToken();
 
+    console.log('AuthService init token:', token);
+    console.log('Token expired:', token ? this.isTokenExpired() : 'no token');
+
     if (token && this.isTokenExpired()) {
       this.logout();
     }
@@ -69,6 +72,9 @@ export class AuthService {
   }
 
   logout() {
+    console.trace('Logging out');
+
+
     localStorage.removeItem('token');
     this.loggedIn.next(false);
   }
