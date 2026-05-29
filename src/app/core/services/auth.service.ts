@@ -26,21 +26,24 @@ export class AuthService {
   isLoggedIn$ = this.loggedIn.asObservable();
 
   isTokenExpired(): boolean {
-    const token = this.getToken();
+  const token = this.getToken();
 
-    if (!token) {
-      return false;
-    }
-
-    try {
-      const decoded: any = jwtDecode(token);
-      const now = Date.now() / 1000;
-
-      return Number(decoded.exp) < now;
-    } catch {
-      return true;
-    }
+  if (!token) {
+    return false;
   }
+
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    const now = Date.now() / 1000;
+
+    console.log('JWT exp:', payload.exp);
+    console.log('Now:', now);
+
+    return Number(payload.exp) < now;
+  } catch {
+    return true;
+  }
+}
 
   register(data: any) {
     return this.http.post(`${this.apiUrl}/register`, data);
@@ -72,9 +75,6 @@ export class AuthService {
   }
 
   logout() {
-    console.trace('Logging out');
-
-
     localStorage.removeItem('token');
     this.loggedIn.next(false);
   }
