@@ -1,68 +1,73 @@
 <div class="login-container">
   <div class="login-card">
 
-<h2>{{ 'LOGIN' | translate }}</h2>
+    <form (ngSubmit)="login()">
 
-<label for="username">{{ 'USERNAME' | translate }}:</label>
-<input
-  type="text"
-  [(ngModel)]="username"
-  name="username"
-  required
-  minlength="3"
-  maxlength="50"
-  #usernameInput="ngModel"
-  placeholder="{{ 'ENTER_USERNAME' | translate }}"
-  (keyup.enter)="login()"
-/>
+      <h2>{{ 'LOGIN' | translate }}</h2>
 
-@if (usernameInput.invalid && usernameInput.touched)
-{
-  <div>
-  {{ 'USERNAME_REQUIRED' | translate }}
-</div>
-}
+      <label for="username">{{ 'USERNAME' | translate }}:</label>
+      <input
+        type="text"
+        [(ngModel)]="username"
+        name="username"
+        required
+        minlength="3"
+        maxlength="50"
+        #usernameInput="ngModel"
+        placeholder="{{ 'ENTER_USERNAME' | translate }}"
+        (keyup.enter)="login()"
+      />
 
-@if (usernameInput.errors?.['minlength']) {
-      {{ 'USERNAME_TOO_SHORT' | translate }}
-    }
+      @if (usernameInput.invalid && usernameInput.touched)
+      {
+        <div>
+        {{ 'USERNAME_REQUIRED' | translate }}
+      </div>
+      }
 
-<br><br>
+      @if (usernameInput.errors?.['minlength']) {
+            {{ 'USERNAME_TOO_SHORT' | translate }}
+          }
 
-<label for="password">{{ 'PASSWORD' | translate }}:</label>
-<input
-  type="password"
-  [(ngModel)]="password"
-  required
-  minlength="6"
-  #passwordInput="ngModel"
-  placeholder="{{ 'ENTER_PASSWORD' | translate }}"
-  (keyup.enter)="login()"
-/>
+      <br><br>
 
-@if (passwordInput.invalid && passwordInput.touched)
-{
-  <div>
-  {{ 'PASSWORD_REQUIRED' | translate }}
-</div>
-}
- @if (passwordInput.errors?.['minlength']) {
-      {{ 'PASSWORD_TOO_SHORT' | translate }}
-    }
+      <label for="password">{{ 'PASSWORD' | translate }}:</label>
+      <input
+        type="password"
+        [(ngModel)]="password"
+        name="password"
+        required
+        minlength="6"
+        #passwordInput="ngModel"
+        placeholder="{{ 'ENTER_PASSWORD' | translate }}"
+        (keyup.enter)="login()"
+      />
 
-<br><br>
+      @if (passwordInput.invalid && passwordInput.touched)
+      {
+        <div>
+        {{ 'PASSWORD_REQUIRED' | translate }}
+      </div>
+      }
+      @if (passwordInput.errors?.['minlength']) {
+            {{ 'PASSWORD_TOO_SHORT' | translate }}
+          }
 
-<button
-      class="login-btn"
-      (click)="login()"
-      [disabled]="
-        usernameInput.invalid ||
-        passwordInput.invalid ||
-        loading
-      "
-    >
-      {{ loading ? 'LOADING' : 'LOGIN' | translate }}
-    </button>
+      <br><br>
+
+      <button
+            class="login-btn"
+            (click)="login()"
+            [disabled]="
+              usernameInput.invalid ||
+              passwordInput.invalid ||
+              loading
+            "
+          >
+            {{ loading ? 'LOADING' : 'LOGIN' | translate }}
+      </button>
+    
+    </form>
 
   </div>
 
