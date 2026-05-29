@@ -36,7 +36,7 @@ export class AuthService {
       const decoded: any = jwtDecode(token);
       const now = Date.now() / 1000;
 
-      return decoded.exp < now;
+      return Number(decoded.exp) < now;
     } catch {
       return true;
     }

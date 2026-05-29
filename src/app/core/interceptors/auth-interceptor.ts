@@ -31,9 +31,6 @@ export class AuthInterceptor
     return next.handle(req).pipe(
       catchError(err => {
         if (err.status === 401) {
-
-          console.log('401 request', req.url);
-
           const isLoginRequest = req.url.includes('/auth/login');
 
           if (!isLoginRequest) {
