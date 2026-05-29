@@ -11,12 +11,14 @@ export class AuthService {
   private apiUrl = `${environment.apiUrl}/auth`;
 
   constructor(private http: HttpClient) {
-    if (this.isTokenExpired()) {
+    const token = this.getToken();
+
+    if (token && this.isTokenExpired()) {
       this.logout();
     }
   }
 
-  private loggedIn = new BehaviorSubject<boolean>(!!this.getToken());
+  private loggedIn = new BehaviorSubject<boolean>(!!localStorage.getItem('token'));
 
   isLoggedIn$ = this.loggedIn.asObservable();
 
@@ -24,7 +26,7 @@ export class AuthService {
     const token = this.getToken();
 
     if (!token) {
-      return true;
+      return false;
     }
 
     try {
