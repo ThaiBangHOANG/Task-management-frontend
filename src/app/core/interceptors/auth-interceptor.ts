@@ -31,8 +31,15 @@ export class AuthInterceptor
     return next.handle(req).pipe(
       catchError(err => {
         if (err.status === 401) {
-          this.authService.logout();
-          this.router.navigate(['/login']);
+
+          console.log('401 request', req.url);
+
+          const isLoginRequest = req.url.includes('/auth/login');
+
+          if (!isLoginRequest) {
+            this.authService.logout();
+            this.router.navigate(['/login']);
+          }
         }
         return throwError(() => err);
       })
