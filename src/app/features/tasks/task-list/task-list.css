@@ -270,11 +270,11 @@ body.dark-mode .task-card-status {
   color: #d1d5db;
 }
 
-.checkbox {
+.checkbox-row {
   color: inherit;
 }
 
-body.dark-mode .checkbox {
+body.dark-mode .checkbox-row {
   color: #f5f5f5;
 }
 
