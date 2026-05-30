@@ -12,19 +12,19 @@
         minlength="3"
         maxlength="100"
         #titleInput="ngModel"
-        placeholder="Enter task title"
+        placeholder="{{ 'TITLE TASK CREATE' | translate }}"
       />
 
       @if (titleInput.invalid && titleInput.touched) {
-        <div>{{ 'TITLE' | translate }}</div>
+        <div class="error-message">{{ 'TITLE' | translate }}</div>
       }
 
       @if (titleInput.errors?.['minlength']) {
-        <div>{{ 'TITLE' | translate }}</div>
+        <div class="error-message">{{ 'TITLE' | translate }}</div>
       }
 
       @if (titleInput.errors?.['maxlength']) {
-        <div>{{ 'TITLE' | translate }}</div>
+        <div class="error-message">{{ 'TITLE' | translate }}</div>
       }
     </div>
 
@@ -32,7 +32,12 @@
 
     <div class="form-group">
       <label>{{ 'DESCRIPTION' | translate }}:</label>
-      <input type="text" [(ngModel)]="task.description" name="description" />
+      <textarea
+        [(ngModel)]="task.description"
+        name="description"
+        rows="4"
+        placeholder="{{ 'DESCRIPTION TASK CREATE' | translate }}"
+      ></textarea>
     </div>
 
     <br />
@@ -40,17 +45,18 @@
     <div class="form-group">
       <label>{{ 'STATUS' | translate }}:</label>
       <select [(ngModel)]="task.status" name="status">
-        <option value="Pending">{{ 'PENDING' | translate }}</option>
-        <option value="In Progress">{{ 'IN_PROGRESS' | translate }}</option>
-        <option value="Completed">{{ 'COMPLETED' | translate }}</option>
+        <option [ngValue]="0">{{ 'PENDING' | translate }}</option>
+        <option [ngValue]="1">{{ 'IN_PROGRESS' | translate }}</option>
+        <option [ngValue]="2">{{ 'COMPLETED' | translate }}</option>
       </select>
     </div>
 
     <br />
-
-    <button type="submit" class="primary" [disabled]="isSubmitting">
-      {{ isSubmitting ? 'CREATING_TASK...' : 'CREATE' | translate }}
-    </button>
-    <button type="button" class="secondary" (click)="goBack()">{{ 'CANCEL' | translate }}</button>
+    <div class="button-group">
+      <button type="submit" class="primary" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'CREATING_TASK...' : 'CREATE' | translate }}
+      </button>
+      <button type="button" class="secondary" (click)="goBack()">{{ 'CANCEL' | translate }}</button>
+    </div>
   </form>
 </div>
