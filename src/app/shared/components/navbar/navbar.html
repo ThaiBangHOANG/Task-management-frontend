@@ -9,6 +9,7 @@
       <select (change)="changeLang($event)" class="language-select">
         <option value="en">{{ 'ENGLISH' | translate }}</option>
         <option value="fr">{{ 'FRENCH' | translate }}</option>
+        <option value="vi">{{ 'VIETNAMESE' | translate }}</option>
       </select>
       <button (click)="logout()">{{ 'LOGOUT' | translate }}</button>
       <button (click)="toggleDarkMode()" [title]="'DARK_MODE' | translate">🌙</button>

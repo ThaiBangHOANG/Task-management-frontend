@@ -16,6 +16,17 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
 .page-container {
   max-width: 1000px;
 
@@ -144,4 +155,18 @@ tr:hover {
   background-color: #fa3301;
   margin-left: 10px;
   color: white;
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.button-group button {
+  flex: 1;
+}
+
+.form-group {
+  margin-bottom: 16px;
 }

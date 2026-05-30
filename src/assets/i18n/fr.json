@@ -57,5 +57,8 @@
   "PASSWORD_REQUIRED": "Le mot de passe est requis",
   "CONFIRM": "Confirmer",
   "YES": "Oui",
-  "NO": "Non"
+  "NO": "Non",
+  "TITLE TASK CREATE": "Entrez le titre de la tâche",
+  "DESCRIPTION TASK CREATE": "Entrez la description de la tâche",
+  "VIETNAMESE": "Vietnamien"
 }

@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://thaibang-dcghgrg4bfdaefgd.francecentral-01.azurewebsites.net/api'
+  apiUrl: 'http://localhost:5150/api'
 };
