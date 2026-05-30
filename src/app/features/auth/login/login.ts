@@ -26,6 +26,8 @@ export class LoginComponent {
   ) {}
 
   login() {
+    if (this.loading) return;
+
     if (!this.username?.trim() || !this.password) {
       this.toast.warning(this.translate.instant('USERNAME_REQUIRED'));
       return;
@@ -47,6 +49,7 @@ export class LoginComponent {
         this.authService.saveToken(res.token);
         this.toast.success(this.translate.instant('LOGIN_SUCCESSFUL'));
         this.router.navigate(['/tasks']);
+        this.loading = false;
       },
 
       error: (err) => {
