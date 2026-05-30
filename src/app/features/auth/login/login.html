@@ -56,15 +56,15 @@
       <br><br>
 
       <button
+            type="submit"
             class="login-btn"
-            (click)="login()"
             [disabled]="
               usernameInput.invalid ||
               passwordInput.invalid ||
               loading
             "
-          >
-            {{ loading ? 'LOADING' : 'LOGIN' | translate }}
+      >
+          {{ loading ? ('LOADING' | translate) : ('LOGIN' | translate) }}
       </button>
     
     </form>

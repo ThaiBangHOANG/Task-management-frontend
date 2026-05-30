@@ -2,11 +2,15 @@
 
   display: flex;
 
-  justify-content: center;
+  justify-content: flex-start;
 
   align-items: center;
 
-  height: 100vh;
+  flex-direction: column;
+
+  min-height: 100vh;
+
+  padding-top: 80px;
 
   background-color: #f5f6fa;
 
@@ -15,6 +19,8 @@
 .login-card {
 
   background: white;
+
+  margin-top: 20px;
 
   padding: 30px;
 
@@ -101,17 +107,17 @@ button:disabled {
 }
 
 .login-btn {
-  width: 106%;
+  width: 100%;
 
-  margin-top: 12px;
+  margin-top: 18px;
 
-  padding: 10px;
+  padding: 12px;
 
   font-size: 16px;
 
-  border-radius: 6px;
+  border-radius: 8px;
 
-  background-color: #999;
+  background-color: #1976d2;
 
   color: white;
 
@@ -120,6 +126,10 @@ button:disabled {
   cursor: pointer;
 
   transition: 0.2s;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 .login-btn:hover {
