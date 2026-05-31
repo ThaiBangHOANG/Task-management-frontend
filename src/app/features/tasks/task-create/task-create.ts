@@ -18,7 +18,7 @@ export class TaskCreateComponent {
   task = {
     title: '',
     description: '',
-    status: 'Pending',
+    status: 0,
   };
 
   constructor(
@@ -37,15 +37,21 @@ export class TaskCreateComponent {
 
   createTask() {
     if (this.isSubmitting) return;
+
     this.isSubmitting = true;
+
     this.taskService.createTask(this.task).subscribe({
       next: () => {
         this.toast.success(this.translate.instant('TASK_CREATED_SUCCESSFULLY'));
+
         this.router.navigate(['/tasks']);
       },
       error: (err) => {
         console.error(err);
+
         this.toast.error(this.translate.instant('FAILED_TO_CREATE_TASK'));
+
+        this.isSubmitting = false;
       },
     });
   }

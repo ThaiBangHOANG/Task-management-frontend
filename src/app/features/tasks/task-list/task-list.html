@@ -20,9 +20,9 @@
       <option value="title">{{ 'TITLE' | translate }}</option>
     </select>
 
-    <label class="checkbox">
-      <input type="checkbox" [(ngModel)]="sortDescending" />
-      {{ 'DESCENDING' | translate }}
+    <label class="checkbox-row">
+      <input type="checkbox" [(ngModel)]="sortDescending" name="sortDescending" />
+      <span>{{ 'DESCENDING' | translate }}</span>
     </label>
 
     <button (click)="loadTasks()">{{ 'APPLY' | translate }}</button>
@@ -59,6 +59,40 @@
       </tr>
     </table>
   </div>
+
+  <div class="mobile-task-list">
+
+  <div class="task-card" *ngFor="let task of tasks">
+
+    <div class="task-card-title">
+      {{ task.title }}
+    </div>
+
+    <div class="task-card-status">
+      {{ task.statusName | titlecase }}
+    </div>
+
+    <div class="task-card-actions">
+
+      <button
+        [routerLink]="['/tasks/edit', task.id]"
+      >
+        {{ 'EDIT' | translate }}
+      </button>
+
+      <button
+        (click)="deleteTask(task.id)"
+        [disabled]="deletingId === task.id"
+      >
+        {{ (deletingId === task.id ? 'DELETING' : 'DELETE') | translate }}
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
 
   @if (!isLoading && tasks.length === 0) {
     <div>{{ 'NO_TASKS_FOUND' | translate }}</div>
