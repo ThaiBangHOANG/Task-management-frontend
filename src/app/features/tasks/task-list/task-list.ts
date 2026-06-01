@@ -58,8 +58,8 @@ export class TaskListComponent {
       )
       .subscribe({
         next: (data: any) => {
-          this.tasks = data;
-          this.totalCount = data.totalCount;
+          this.tasks = data.items ?? data;
+          this.totalCount = data.totalCount ?? data.length;
           this.isLoading = false;
         },
         error: (err) => {
