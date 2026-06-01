@@ -25,7 +25,7 @@
       <span>{{ 'DESCENDING' | translate }}</span>
     </label>
 
-    <button (click)="loadTasks()">{{ 'APPLY' | translate }}</button>
+    <button (click)="applyFilters()">{{ 'APPLY' | translate }}</button>
   </div>
 
   <br />
@@ -40,7 +40,7 @@
         <th>{{ 'ACTIONS' | translate }}</th>
       </tr>
 
-      <tr *ngFor="let task of tasks">
+      <tr *ngFor="let task of tasks; trackBy: trackByTaskId">
         <td>
           {{ task.title }}
         </td>
@@ -60,7 +60,7 @@
     </table>
   </div>
 
-  <div class="mobile-task-list">
+  <div class="mobile-task-list" *ngIf="!isLoading && tasks.length > 0">
 
   <div class="task-card" *ngFor="let task of tasks">
 
@@ -91,7 +91,7 @@
 
   </div>
 
-</div>
+  </div>
 
 
   @if (!isLoading && tasks.length === 0) {
