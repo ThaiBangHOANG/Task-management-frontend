@@ -99,6 +99,10 @@ export class TaskListComponent {
     this.loadTasks();
   }
 
+  trackByTaskId(index: number, task: any): number {
+  return task.id;
+}
+
   logout() {
     if (!confirm(this.translate.instant('CONFIRM_LOGOUT'))) {
       return;
