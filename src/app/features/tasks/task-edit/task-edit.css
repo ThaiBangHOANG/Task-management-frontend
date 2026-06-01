@@ -145,3 +145,19 @@ tr:hover {
   margin-left: 10px;
   color: white;
 }
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.button-group button {
+  flex: 1;
+}
+

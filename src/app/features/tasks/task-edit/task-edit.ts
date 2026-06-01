@@ -24,6 +24,7 @@ export class TaskEditComponent implements OnInit {
   };
 
   taskId!: number;
+  isSubmitting: boolean = false;
 
   constructor(
     private taskService: TaskService,
@@ -64,6 +65,9 @@ export class TaskEditComponent implements OnInit {
   }
 
   updateTask() {
+    if (this.isSubmitting) return;
+
+    this.isSubmitting = true;
 
     this.taskService.updateTask(this.taskId, this.task)
       .subscribe({
